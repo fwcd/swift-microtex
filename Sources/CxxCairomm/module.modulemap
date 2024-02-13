@@ -1,0 +1,5 @@
+module CxxCairomm {
+    header "cairomm/cairomm.h"
+    link "cairomm"
+    export *
+}

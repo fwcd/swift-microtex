@@ -18,9 +18,15 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CxxMicroTeX",
-            dependencies: [.target(name: "CTinyXML2")],
+            dependencies: [
+                .target(name: "CFontConfig"),
+                .target(name: "CTinyXML2"),
+                .target(name: "CxxCairomm"),
+                .target(name: "CxxPangomm"),
+            ],
             path: "./MicroTeX",
             exclude: [
+                "src/samples",
                 // (cd MicroTeX && find src -type f ! \( -name '*.cpp' -o -name '*.h' \)) | sort
                 // TODO: Automate this (or figure out if there's some way to glob from SPM?)
                 "src/QtLatex.pri",
@@ -40,12 +46,22 @@ let package = Package(
                 "src/res/parser/meson.build",
                 "src/res/reg/meson.build",
                 "src/res/sym/meson.build",
-                "src/samples/meson.build",
                 "src/utils/meson.build",
             ],
             sources: ["src"],
             publicHeadersPath: "src",
-            cxxSettings: [.unsafeFlags(["-std=c++17", "-UDEBUG"])]
+            cxxSettings: [
+                .define("BUILD_GTK"),
+                .unsafeFlags(["-std=c++17", "-UDEBUG"]),
+            ]
+        ),
+        .systemLibrary(
+            name: "CFontConfig",
+            pkgConfig: "fontconfig",
+            providers: [
+                .apt(["libfontconfig1-dev"]),
+                .brew(["fontconfig"]),
+            ]
         ),
         .systemLibrary(
             name: "CTinyXML2",
@@ -53,6 +69,22 @@ let package = Package(
             providers: [
                 .apt(["libtinyxml2-dev"]),
                 .brew(["tinyxml2"]),
+            ]
+        ),
+        .systemLibrary(
+            name: "CxxCairomm",
+            pkgConfig: "cairomm-1.16",
+            providers: [
+                .apt(["libcairomm-1.16-dev"]),
+                .brew(["cairomm"]),
+            ]
+        ),
+        .systemLibrary(
+            name: "CxxPangomm",
+            pkgConfig: "pangomm-2.48",
+            providers: [
+                .apt(["libpangomm-2.48-dev"]),
+                .brew(["pangomm"]),
             ]
         ),
         .target(
