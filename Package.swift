@@ -66,7 +66,7 @@ let package = Package(
             name: "CxxCairomm",
             pkgConfig: "cairomm-1.16",
             providers: [
-                // TODO: Figure out the apt package
+                .apt(["libcairomm-1.16-1"]),
                 .brew(["cairomm"]),
             ]
         ),
@@ -74,7 +74,7 @@ let package = Package(
             name: "CxxPangomm",
             pkgConfig: "pangomm-2.48",
             providers: [
-                // TODO: Figure out the apt package
+                .apt(["libpangomm-2.48-1"]),
                 .brew(["pangomm"]),
             ]
         ),
