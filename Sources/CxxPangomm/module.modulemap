@@ -1,0 +1,5 @@
+module CxxPangomm {
+    header "pangomm/pangomm.h"
+    link "pangomm"
+    export *
+}
