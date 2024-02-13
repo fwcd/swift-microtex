@@ -8,7 +8,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'macos-latest']
+        # TODO: On macOS a development/trunk toolchain is needed until
+        # https://github.com/apple/swift-package-manager/pull/6772 is included
+        # in a release.
+        os: ['ubuntu-latest']
         swift: ['5.9']
 
     steps:
