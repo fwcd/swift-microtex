@@ -1,2 +1,13 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+import CxxMicroTeX
+
+public class LaTeX {
+    public static let shared = LaTeX()
+
+    private init() {
+        tex.LaTeX.`init`("test")
+    }
+
+    deinit {
+        tex.LaTeX.release()
+    }
+}
