@@ -7,17 +7,13 @@ jobs:
   build:
     strategy:
       matrix:
-        include:
-          # TODO: A Ubuntu Docker image is needed until 24.04 LTS is supported
-          # natively in GitHub runners since the newer versions of cairomm
-          # and pangomm are required
-        - os: 'ubuntu-latest'
-          image: 'ubuntu:23.10'
-          # TODO: On macOS a development/trunk toolchain is needed until
-          # https://github.com/apple/swift-package-manager/pull/6772 is included
-          # in a release.
-        - os: 'macos-latest'
-          image: ''
+        # TODO: A Ubuntu Docker image is needed until 24.04 LTS is supported
+        # natively in GitHub runners since the newer versions of cairomm
+        # and pangomm are required
+        # TODO: On macOS a development/trunk toolchain is needed until
+        # https://github.com/apple/swift-package-manager/pull/6772 is included
+        # in a release.
+        os: ['macos-latest']
         
     runs-on: ${{ matrix.os }}
     container: ${{ matrix.image }}
