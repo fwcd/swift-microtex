@@ -67,6 +67,11 @@ let package = Package(
             resources: [.copy("MicroTeX/res")],
             swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
+        .executableTarget(
+            name: "microtex-demo",
+            dependencies: [.target(name: "MicroTeX")],
+            swiftSettings: [.interoperabilityMode(.Cxx)]
+        ),
         .testTarget(
             name: "MicroTeXTests",
             dependencies: ["MicroTeX"]
