@@ -5,25 +5,33 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # TODO: On macOS a development/trunk toolchain is needed until
-        # https://github.com/apple/swift-package-manager/pull/6772 is included
-        # in a release.
-        os: ['ubuntu-latest']
-        swift: ['5.9']
+        include:
+          # TODO: A Ubuntu Docker image is needed until 24.04 LTS is supported
+          # natively in GitHub runners since the newer versions of cairomm
+          # and pangomm are required
+        - os: 'ubuntu-latest'
+          image: 'ubuntu:23.10'
+          # TODO: On macOS a development/trunk toolchain is needed until
+          # https://github.com/apple/swift-package-manager/pull/6772 is included
+          # in a release.
+        - os: 'macos-latest'
+          image: ''
+        
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.image }}
 
     steps:
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
-    - uses: swift-actions/setup-swift@v1
+    - uses: SwiftyLab/setup-swift@latest
       with:
-        swift-version: ${{ matrix.swift }}
+        development: true
     - name: Install dependencies (Linux)
       if: runner.os == 'Linux'
-      run: sudo apt-get install -y libtinyxml2-dev libcairomm-1.16-dev libpangomm-2.48-dev libfontconfig1-dev
+      run: sudo apt-get update && sudo apt-get install -y libtinyxml2-dev libcairomm-1.16-dev libpangomm-2.48-dev libfontconfig1-dev
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS'
       run: brew install tinyxml2 cairomm pangomm fontconfig
