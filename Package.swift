@@ -44,7 +44,7 @@ let package = Package(
             ],
             sources: ["src"],
             publicHeadersPath: "src",
-            cxxSettings: [.unsafeFlags(["-std=c++17"])]
+            cxxSettings: [.unsafeFlags(["-std=c++17", "-UDEBUG"])]
         ),
         .systemLibrary(
             name: "CTinyXML2",
