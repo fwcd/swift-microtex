@@ -58,6 +58,13 @@ let package = Package(
         .target(
             name: "MicroTeX",
             dependencies: [.target(name: "CxxMicroTeX")],
+            // Once https://github.com/apple/swift-package-manager/pull/7232 is
+            // available in a stable version, we'll be able to remove this
+            // trickery, avoid the warning about non-excluded files and just
+            // exclude the out-of-target resource path directly.
+            path: ".",
+            sources: ["Sources/MicroTeX"],
+            resources: [.copy("MicroTeX/res")],
             swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
         .testTarget(
