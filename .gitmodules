@@ -1,0 +1,3 @@
+[submodule "Sources/CppMicroTeX/MicroTeX"]
+	path = MicroTeX
+	url = https://github.com/NanoMichael/MicroTeX.git

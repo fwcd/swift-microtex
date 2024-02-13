@@ -1,0 +1,5 @@
+module CTinyXML2 {
+    header "tinyxml2.h"
+    link "tinyxml2"
+    export *
+}
