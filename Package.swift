@@ -19,6 +19,7 @@ let package = Package(
         .target(
             name: "CxxMicroTeX",
             dependencies: [
+                .target(name: "CFontConfig"),
                 .target(name: "CTinyXML2"),
                 .target(name: "CxxCairomm"),
                 .target(name: "CxxPangomm"),
@@ -52,6 +53,14 @@ let package = Package(
             cxxSettings: [
                 .define("BUILD_GTK"),
                 .unsafeFlags(["-std=c++17", "-UDEBUG"]),
+            ]
+        ),
+        .systemLibrary(
+            name: "CFontConfig",
+            pkgConfig: "fontconfig",
+            providers: [
+                .apt(["libfontconfig1-dev"]),
+                .brew(["fontconfig"]),
             ]
         ),
         .systemLibrary(
