@@ -88,8 +88,16 @@ let package = Package(
             ]
         ),
         .target(
+            name: "CxxMicroTeXSupport",
+            publicHeadersPath: ".",
+            cxxSettings: [.unsafeFlags(["-std=c++17"])]
+        ),
+        .target(
             name: "MicroTeX",
-            dependencies: [.target(name: "CxxMicroTeX")],
+            dependencies: [
+                .target(name: "CxxMicroTeX"),
+                .target(name: "CxxMicroTeXSupport"),
+            ],
             // Once https://github.com/apple/swift-package-manager/pull/7232 is
             // available in a stable version, we'll be able to remove this
             // trickery, avoid the warning about non-excluded files and just
