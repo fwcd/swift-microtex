@@ -16,7 +16,7 @@ public class LaTeX {
         tex.LaTeX.release()
     }
 
-    func parse(
+    public func parse(
         _ code: String,
         width: Int = 720,
         textSize: Double = 24,
