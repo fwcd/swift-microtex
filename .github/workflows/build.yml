@@ -32,5 +32,6 @@ jobs:
       with:
         swift-version: 'swift-DEVELOPMENT-SNAPSHOT-2024-02-12-a'
         development: true
+        check-latest: true
     - name: Build
       run: swift build
