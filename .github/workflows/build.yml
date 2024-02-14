@@ -10,9 +10,10 @@ jobs:
         # TODO: A Ubuntu Docker image is needed until 24.04 LTS is supported
         # natively in GitHub runners since the newer versions of cairomm
         # and pangomm are required
-        # TODO: On macOS a development/trunk toolchain is needed until
-        # https://github.com/apple/swift-package-manager/pull/6772 is included
-        # in a release.
+        # TODO: A development/trunk toolchain is needed until
+        # - https://github.com/apple/swift-package-manager/pull/6772
+        # - https://github.com/apple/swift-package-manager/pull/7232
+        # are included in a release.
         os: ['macos-14']
         
     runs-on: ${{ matrix.os }}

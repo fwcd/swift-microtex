@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 5.11
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -98,13 +98,7 @@ let package = Package(
                 .target(name: "CxxMicroTeX"),
                 .target(name: "CxxMicroTeXSupport"),
             ],
-            // Once https://github.com/apple/swift-package-manager/pull/7232 is
-            // available in a stable version, we'll be able to remove this
-            // trickery, avoid the warning about non-excluded files and just
-            // exclude the out-of-target resource path directly.
-            path: ".",
-            sources: ["Sources/MicroTeX"],
-            resources: [.copy("MicroTeX/res")],
+            resources: [.process("../../MicroTeX/res")],
             swiftSettings: [.interoperabilityMode(.Cxx)]
         ),
         .executableTarget(
