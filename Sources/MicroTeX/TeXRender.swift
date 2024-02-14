@@ -1,4 +1,6 @@
 import CxxMicroTeX
+import CxxMicroTeXSupport
+import Foundation
 
 public class TeXRender {
     let wrapped: UnsafeMutablePointer<tex.TeXRender>
@@ -10,5 +12,11 @@ public class TeXRender {
 
     init(wrapped: UnsafeMutablePointer<tex.TeXRender>) {
         self.wrapped = wrapped
+    }
+
+    public func png() -> Data {
+        let g2d = GraphicsContext()
+        // TODO
+        // wrapped.pointee.draw(&g2d, 0, 0)
     }
 }

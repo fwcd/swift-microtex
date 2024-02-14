@@ -89,8 +89,12 @@ let package = Package(
         ),
         .target(
             name: "CxxMicroTeXSupport",
+            dependencies: [.target(name: "CxxMicroTeX")],
             publicHeadersPath: ".",
-            cxxSettings: [.unsafeFlags(["-std=c++17"])]
+            cxxSettings: [
+                .define("BUILD_GTK"),
+                .unsafeFlags(["-std=c++17", "-UDEBUG"])
+            ]
         ),
         .target(
             name: "MicroTeX",
