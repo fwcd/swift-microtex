@@ -30,6 +30,7 @@ jobs:
         submodules: 'true'
     - uses: SwiftyLab/setup-swift@latest
       with:
+        swift-version: 'swift-DEVELOPMENT-SNAPSHOT-2024-02-12-a'
         development: true
     - name: Build
       run: swift build
